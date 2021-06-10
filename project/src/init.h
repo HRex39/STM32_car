@@ -4,6 +4,7 @@
 #include "stm32f10x.h"
 #include "port.h"
 #include "infrared.h"
+#include "ultrasonic.h"
 #include "delay.h"
 
 void LED_Init()
@@ -32,7 +33,11 @@ void System_Init()
 	delay_init(80);
 	//init LED
 	LED_Init();
+	//init Infrared
 	Infrared_Init();
+	//init ultrasonic
+	Ultra_Init();
+	
 }
 
 

@@ -7,12 +7,12 @@
 #define Infra_Right GPIO_Pin_12
 
 //GPIO_B
-
+#define Ultra_Front_Echo GPIO_Pin_7
 
 //GPIO_C
 #define LED1 GPIO_Pin_12 
 #define LED2 GPIO_Pin_11 
-
+#define Ultra_Front_Trg GPIO_Pin_13
 
 
 #endif // PORT_H_INCLUDED

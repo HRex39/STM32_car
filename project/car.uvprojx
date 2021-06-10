@@ -388,6 +388,26 @@
               <FileType>1</FileType>
               <FilePath>.\src\main.c</FilePath>
             </File>
+            <File>
+              <FileName>init.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\init.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>port.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\port.h</FilePath>
+            </File>
+            <File>
+              <FileName>infrared.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\infrared.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

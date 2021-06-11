@@ -6,6 +6,7 @@
 #include "infrared.h"
 #include "ultrasonic.h"
 #include "delay.h"
+#include "motor.h"
 
 void LED_Init()
 {
@@ -37,6 +38,8 @@ void System_Init()
 	Infrared_Init();
 	//init ultrasonic
 	Ultra_Init();
+	//init timer for pwm
+	TIM3_PWM_Init(999,71);
 	
 }
 

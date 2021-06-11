@@ -4,9 +4,9 @@
 #include "port.h"
 #include "infrared.h"
 #include "ultrasonic.h"
-
-
+#include "motor.h"
 #include "stdio.h"
+#include "test.h"
 
 /**
 				README
@@ -27,22 +27,30 @@
 
 **/
 
+/**
+				README
+										YSK 2021/6/11
+(1)You can just use following code to run the car:
+	Next two should  use with delay:
+		Go_Forward();delay_ms(1000);
+		Go_Back();delay_ms(1000);
+	Others just easily use it:
+		Car_Stop();
+		Turn_Left();
+		Turn_Right();
+		Turn_Around();
+(2)I move some test code to test() in test.h
+
+
+
+**/
+
 int main()
 {
-	float length;
-	
 	System_Init();
+	//for the loop
 	while(1)
-	{
-		// if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
-		// 	GPIO_ResetBits(GPIOC, LED1);
-		// else
-		// 	GPIO_SetBits(GPIOC, LED1);
-		//Get_Infrared(Infra_Left);
-		length = Hcsr04GetLength();
-		if (length > 10)
-			GPIO_ResetBits(GPIOC, LED2);
-		else
-			GPIO_SetBits(GPIOC, LED2);
+	{	
+	//test();
 	}
 }

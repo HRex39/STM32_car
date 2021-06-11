@@ -6,8 +6,13 @@
 #define Infra_Left	GPIO_Pin_8 
 #define Infra_Right GPIO_Pin_12
 
+
 //GPIO_B
 #define Ultra_Front_Echo GPIO_Pin_7
+#define PWM_1 GPIO_Pin_4
+#define PWM_2 GPIO_Pin_5
+#define PWM_3 GPIO_Pin_0
+#define PWM_4 GPIO_Pin_1
 
 //GPIO_C
 #define LED1 GPIO_Pin_12 

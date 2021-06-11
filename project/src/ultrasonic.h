@@ -94,7 +94,7 @@ float Hcsr04GetLength()
 	int i = 0;
 	float lengthTemp = 0;
 	float sum = 0;
-	while(i!=5)
+	while(i!=3)
 	{
 		GPIO_SetBits(GPIOC, Ultra_Front_Trg);      //发送口高电平输出
 		delay_us(20);
@@ -108,7 +108,7 @@ float Hcsr04GetLength()
 		lengthTemp = ((float)t/58.0);//cm
 		sum = lengthTemp + sum ;
 	}
-	lengthTemp = sum/5.0;
+	lengthTemp = sum/3.0;
 	return lengthTemp;
 }
 

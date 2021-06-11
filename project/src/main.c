@@ -34,10 +34,11 @@ int main()
 	System_Init();
 	while(1)
 	{
-		if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
-			GPIO_ResetBits(GPIOC, LED1);
-		else
-			GPIO_SetBits(GPIOC, LED1);
+		// if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
+		// 	GPIO_ResetBits(GPIOC, LED1);
+		// else
+		// 	GPIO_SetBits(GPIOC, LED1);
+		//Get_Infrared(Infra_Left);
 		length = Hcsr04GetLength();
 		if (length > 10)
 			GPIO_ResetBits(GPIOC, LED2);

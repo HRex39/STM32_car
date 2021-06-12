@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "include.h": "c",
-        "delay.h": "c",
-        "stm32f10x.h": "c"
-    }
-}

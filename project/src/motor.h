@@ -3,6 +3,7 @@
 #include "stm32f10x.h"
 #include "port.h"
 
+#define vertifyTime 50
 #define speed 8000
 
 //TIM3 PWM部分初始化 
@@ -81,5 +82,68 @@ void Turn_Around(){
 	TIM3->CCR4 = speed;
 	delay_ms(800);
 }
+
+//turn right to vertify
+void Vertify_Right(){
+	TIM3->CCR1 = 0;
+	TIM3->CCR2 = speed-2000;
+	TIM3->CCR3 = speed;
+	TIM3->CCR4 = 0;
+	
+	//need to check in real car
+	delay_ms(vertifyTime);
+}
+
+//turn left to vertify
+void Vertify_Left(){
+	TIM3->CCR1 = 0;
+	TIM3->CCR2 = speed-2000;
+	TIM3->CCR3 = speed;
+	TIM3->CCR4 = 0;
+	
+	//need to check in real car
+	delay_ms(vertifyTime);
+}
+
+
+char car_dir_left(char car_dir)
+{
+	switch(car_dir)
+	{
+		case 'u': car_dir = 'l'; break;
+		case 'l': car_dir = 'd'; break;
+		case 'd': car_dir = 'r'; break;
+		case 'r': car_dir = 'u'; break;
+		default:			   break;
+	}
+	return car_dir;
+}
+
+char car_dir_right(char car_dir)
+{
+	switch(car_dir)
+	{
+		case 'u': car_dir = 'r'; break;
+		case 'l': car_dir = 'u'; break;
+		case 'd': car_dir = 'l'; break;
+		case 'r': car_dir = 'd'; break;
+		default:			   break;
+	}
+	return car_dir;
+}
+
+char car_dir_back(char car_dir)
+{
+	switch(car_dir)
+	{
+		case 'u': car_dir = 'd'; break;
+		case 'l': car_dir = 'r'; break;
+		case 'd': car_dir = 'u'; break;
+		case 'r': car_dir = 'l'; break;
+		default:			   break;
+	}
+	return car_dir;
+}
+
 
 #endif // MOTOR_H_INCLUDED

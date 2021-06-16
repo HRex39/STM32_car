@@ -46,3 +46,17 @@ robot car use STM32F103RB
   ```
 
 - I move some test code to test() in test.h
+
+## YSK 2021/6/16
+
+1. 4个红外pin口的的定义，初始化时使用的是GPIOA。
+
+   1. port.h	line9
+
+2. 修正轨迹时的时间延迟（即修正的幅度）。
+
+   #define vertifyTime 50
+
+3. 前方障碍的阈值修改。
+
+   #define threshold 10（cm）

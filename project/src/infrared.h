@@ -13,11 +13,14 @@ void Infrared_Init()
 	//init the Infra_Left
 	GPIO_InitStructure.GPIO_Pin = Infra_Left;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	//init the Infra_front
-	GPIO_InitStructure.GPIO_Pin = Infra_Front;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	//init the Infra_right
 	GPIO_InitStructure.GPIO_Pin = Infra_Right;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	//init the Infra_vertify_Left
+	GPIO_InitStructure.GPIO_Pin = Infra_vertify_Left;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	//init the Infra_vertify_Right
+	GPIO_InitStructure.GPIO_Pin = Infra_vertify_Right;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 

@@ -25,7 +25,7 @@ void Infrared_Init()
 }
 
 void LED_Check_Infrared(uint16_t GPIO_Pin){
-	if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
+	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin) == 0)
 		GPIO_ResetBits(GPIOC, LED1);
 	else
 		GPIO_SetBits(GPIOC, LED1);
@@ -33,7 +33,7 @@ void LED_Check_Infrared(uint16_t GPIO_Pin){
 
 //Distance less than threshold return true, else return false 
 bool Get_Infrared(uint16_t GPIO_Pin){
-	if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
+	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin) == 0)
 		return false;
 	else
 		return true;

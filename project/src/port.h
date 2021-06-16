@@ -2,15 +2,11 @@
 #define PORT_H_INCLUDED
 
 //GPIO_A
-// #define Infra_Front GPIO_Pin_11
-// #define Infra_Left	GPIO_Pin_8 
-// #define Infra_Right GPIO_Pin_12
-
-//need to change GPIO Pin number
-#define Infra_vertify_Left	GPIO_Pin_1
-#define Infra_vertify_Right GPIO_Pin_2
-#define Infra_Left	GPIO_Pin_8 
-#define Infra_Right GPIO_Pin_12
+//need to check GPIO Pin number
+#define Infra_vertify_Left	GPIO_Pin_11
+#define Infra_vertify_Right GPIO_Pin_12
+#define Infra_Left	GPIO_Pin_8
+#define Infra_Right GPIO_Pin_15
 
 //GPIO_B
 #define Ultra_Front_Echo GPIO_Pin_7

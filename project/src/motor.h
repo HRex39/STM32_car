@@ -4,7 +4,7 @@
 #include "port.h"
 
 #define vertifyTime 50
-#define speed 8000
+#define speed 4000
 
 //TIM3 PWM部分初始化 
 //PWM输出初始化
@@ -44,6 +44,14 @@ void Go_Forward()
 	TIM3->CCR4 = 0;	
 }
 
+void Go_Little_Forward()
+{
+	TIM3->CCR1 = 3000-2000;
+	TIM3->CCR2 = 0;
+	TIM3->CCR3 = 3000;
+	TIM3->CCR4 = 0;	
+}
+
 void Go_Back()
 {
 	TIM3->CCR1 = 0;
@@ -59,28 +67,28 @@ void Car_Stop(){
 	TIM3->CCR4 = 0;
 }
 
-void Turn_Right(){
+void Turn_Right(int ms){
 	TIM3->CCR1 = 0;
 	TIM3->CCR2 = speed-2000;
 	TIM3->CCR3 = speed;
 	TIM3->CCR4 = 0;
-	delay_ms(400);
+	delay_ms(ms);
 }
 
-void Turn_Left(){
+void Turn_Left(int ms){
 	TIM3->CCR1 = speed-2000;
 	TIM3->CCR2 = 0;
 	TIM3->CCR3 = 0;
 	TIM3->CCR4 = speed;
-	delay_ms(400);
+	delay_ms(ms);
 }
 
-void Turn_Around(){
+void Turn_Around(int ms){
 	TIM3->CCR1 = speed-2000;
 	TIM3->CCR2 = 0;
 	TIM3->CCR3 = 0;
 	TIM3->CCR4 = speed;
-	delay_ms(800);
+	delay_ms(ms);
 }
 
 //turn right to vertify

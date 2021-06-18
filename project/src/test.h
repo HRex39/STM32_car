@@ -32,15 +32,27 @@ void test(){
     delay_ms(1000);
     Car_Stop();
     delay_ms(1000);
-    Turn_Left();
+    Turn_Left(450);
     Car_Stop();
     delay_ms(1000);
-    Turn_Right();
+    Turn_Right(450);
     Car_Stop();
     delay_ms(1000);
-    Turn_Around();
+    Turn_Around(800);
     Car_Stop();
     delay_ms(1000);
+}
+
+void Dir_test(char car_dir)
+{
+	switch(car_dir)
+	{
+		case 'u': GPIO_SetBits(GPIOC, LED1);GPIO_SetBits(GPIOC, LED2); break;
+		case 'l': GPIO_SetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2); break;
+		case 'r': GPIO_ResetBits(GPIOC, LED1);GPIO_SetBits(GPIOC, LED2); break;
+		case 'd': GPIO_ResetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2); break;
+	}
+
 }
 
 #endif // TEST_H_INCLUDED

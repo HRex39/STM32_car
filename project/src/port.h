@@ -3,10 +3,10 @@
 
 //GPIO_A
 //need to check GPIO Pin number
-#define Infra_vertify_Left	GPIO_Pin_8
-#define Infra_vertify_Right GPIO_Pin_15
-#define Infra_Left	GPIO_Pin_11
-#define Infra_Right GPIO_Pin_12
+#define Rear_Left	GPIO_Pin_8
+#define Rear_Right GPIO_Pin_15
+#define Front_Left	GPIO_Pin_11
+#define Front_Right GPIO_Pin_12
 
 //GPIO_B
 #define Ultra_Front_Echo GPIO_Pin_7

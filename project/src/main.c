@@ -19,8 +19,12 @@ int main()
 	//for the loop
 	while(1)
 	{
+		/*test*/
 		//test();
 		Dir_test(carDir);//for debug
+		//Ultrasonic_test(threshold);
+		
+		/*function*/
 
 		Go_Forward();
 		delay_ms(300);
@@ -28,7 +32,7 @@ int main()
 		//Go_Little_Forward();
 
 		//上行时左侧有口
-		if((carDir == 'u')&&(Get_Infrared(Infra_vertify_Left) == 0))
+		if((carDir == 'u')&&(Get_Infrared(Rear_Left) == 0))
 		{
 			delay_ms(20);
 			Car_Stop();delay_ms(1000);
@@ -37,7 +41,8 @@ int main()
 		}
 		
 		//下行时车右侧有口
-		if((carDir == 'd')&&(Get_Infrared(Infra_vertify_Right) == 0)){
+		if((carDir == 'd')&&(Get_Infrared(Rear_Right) == 0))
+		{
 			delay_ms(20);
 			Car_Stop();delay_ms(1000);
 			Turn_Right(300);	
@@ -56,24 +61,24 @@ int main()
 			
 			if((carDir == 'u')||(carDir == 'd'))
 			{
-				if((Get_Infrared(Infra_Left) == 1) && (Get_Infrared(Infra_Right) == 1))//且左右有墙时
+				if((Get_Infrared(Rear_Left) == 1) && (Get_Infrared(Rear_Right) == 1))//且左右有墙时
 				{
 					Go_Back();			//先后退防止撞墙，并转180°，
 					delay_ms(300);
-					Turn_Around(600); 
+					Turn_Around(800); 
 					carDir = car_dir_back(carDir);
 				}
 			} 
 			else if(carDir == 'l')
 			{
-				if(Get_Infrared(Infra_Left) == 0)
+				if(Get_Infrared(Rear_Left) == 0)
 				{//车左侧没墙 
 					delay_ms(20);
 					Car_Stop();delay_ms(1000);
 					Turn_Left(300);
 					carDir = car_dir_left(carDir);
 				}
-				else if (Get_Infrared(Infra_Right) == 1) 
+				else if (Get_Infrared(Rear_Right) == 1) 
 				{//车不能左转就右转，优先左转
 					delay_ms(20);
 					Car_Stop();delay_ms(1000);
@@ -91,11 +96,18 @@ int main()
 		{
 		
 			//Distance less than threshold return true, else return false
-			int vertifyLeft = Get_Infrared(Infra_vertify_Left);
-			int vertifyRight = Get_Infrared(Infra_vertify_Right);
+			
+			/*int vertifyLeft = Get_Infrared(Rear_Left);
+			int vertifyRight = Get_Infrared(Rear_Right);*/
+			
+			/*int vertifyLeft = Get_Infrared(Front_Left) && !Get_Infrared(Rear_Left);
+			int vertifyRight = Get_Infrared(Front_Right) && !Get_Infrared(Rear_Right);*/
+			
+			int vertifyLeft = Get_Infrared(Front_Left);
+			int vertifyRight = Get_Infrared(Front_Right);
 
-			if(vertifyLeft==1 && vertifyRight==0)	Vertify_Right();
-			else if(vertifyLeft==0 && vertifyRight==1) Vertify_Left();
+			if(vertifyLeft==1 && vertifyRight==0)	Vertify_Right(30);  //左侧离得近
+			else if(vertifyLeft==0 && vertifyRight==1) Vertify_Left(30);  //右侧离得近
 			
 		}
 		

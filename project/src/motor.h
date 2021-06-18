@@ -3,7 +3,7 @@
 #include "stm32f10x.h"
 #include "port.h"
 
-#define vertifyTime 50
+//#define vertifyTime 50
 #define speed 4000
 
 //TIM3 PWM部分初始化 
@@ -34,8 +34,10 @@ void TIM3_PWM_Init(uint16_t arr,uint16_t psc)
 	TIM3->CR1|=0x01; //使能定时器3
 }
 
-// 1-left wheel forward     2-left wheel backword
+// 1-left wheel forward     2-left wheel backward
 // 3-right wheel forward    4-right wheel backward
+//上面的注释不太对
+//1-前右，2-右后，3-左前，4-右前
 void Go_Forward()
 {
 	TIM3->CCR1 = speed-2000;
@@ -92,7 +94,7 @@ void Turn_Around(int ms){
 }
 
 //turn right to vertify
-void Vertify_Right(){
+void Vertify_Right(int vertifyTime){
 	TIM3->CCR1 = 0;
 	TIM3->CCR2 = speed-2000;
 	TIM3->CCR3 = speed;
@@ -103,11 +105,11 @@ void Vertify_Right(){
 }
 
 //turn left to vertify
-void Vertify_Left(){
-	TIM3->CCR1 = 0;
-	TIM3->CCR2 = speed-2000;
-	TIM3->CCR3 = speed;
-	TIM3->CCR4 = 0;
+void Vertify_Left(int vertifyTime){
+  TIM3->CCR1 = speed-2000;
+	TIM3->CCR2 = 0;
+	TIM3->CCR3 = 0;
+	TIM3->CCR4 = speed;
 	
 	//need to check in real car
 	delay_ms(vertifyTime);

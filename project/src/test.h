@@ -21,11 +21,11 @@ void test(){
             
             
     /****************Infrared****************/     
-    if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
+    if (GPIO_ReadInputDataBit(GPIOA, Front_Left) == 0)
     GPIO_ResetBits(GPIOC, LED1);
     else
         GPIO_SetBits(GPIOC, LED1);
-    LED_Check_Infrared(Infra_Left);
+    LED_Check_Infrared(Front_Left);
 		
     /****************Move Of Car****************/   
     Go_Forward();
@@ -53,6 +53,12 @@ void Dir_test(char car_dir)
 		case 'd': GPIO_ResetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2); break;
 	}
 
+}
+
+void Ultrasonic_test(int threshold)
+{
+	if(Hcsr04GetLength() < threshold) { GPIO_ResetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2);}
+	else  { GPIO_SetBits(GPIOC, LED1);GPIO_SetBits(GPIOC, LED2);}
 }
 
 #endif // TEST_H_INCLUDED

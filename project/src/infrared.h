@@ -10,17 +10,17 @@ void Infrared_Init()
 	//config the GPIO_A
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	//init the Infra_Left
-	GPIO_InitStructure.GPIO_Pin = Infra_Left;
+	//init the Front_Left
+	GPIO_InitStructure.GPIO_Pin = Front_Left;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	//init the Infra_right
-	GPIO_InitStructure.GPIO_Pin = Infra_Right;
+	//init the Front_Right
+	GPIO_InitStructure.GPIO_Pin = Front_Right;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	//init the Infra_vertify_Left
-	GPIO_InitStructure.GPIO_Pin = Infra_vertify_Left;
+	//init the Rear_Left
+	GPIO_InitStructure.GPIO_Pin = Rear_Left;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	//init the Infra_vertify_Right
-	GPIO_InitStructure.GPIO_Pin = Infra_vertify_Right;
+	//init the Rear_Right
+	GPIO_InitStructure.GPIO_Pin = Rear_Right;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
@@ -34,9 +34,9 @@ void LED_Check_Infrared(uint16_t GPIO_Pin){
 //Distance less than threshold return true, else return false 
 bool Get_Infrared(uint16_t GPIO_Pin){
 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin) == 0)
-		return false;
-	else
 		return true;
+	else
+		return false;
 }
 
 

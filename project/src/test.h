@@ -21,26 +21,44 @@ void test(){
             
             
     /****************Infrared****************/     
-    if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
+    if (GPIO_ReadInputDataBit(GPIOA, Front_Left) == 0)
     GPIO_ResetBits(GPIOC, LED1);
     else
         GPIO_SetBits(GPIOC, LED1);
-    LED_Check_Infrared(Infra_Left);
+    LED_Check_Infrared(Front_Left);
 		
     /****************Move Of Car****************/   
     Go_Forward();
     delay_ms(1000);
     Car_Stop();
     delay_ms(1000);
-    Turn_Left();
+    Turn_Left(450);
     Car_Stop();
     delay_ms(1000);
-    Turn_Right();
+    Turn_Right(450);
     Car_Stop();
     delay_ms(1000);
-    Turn_Around();
+    Turn_Around(800);
     Car_Stop();
     delay_ms(1000);
+}
+
+void Dir_test(char car_dir)
+{
+	switch(car_dir)
+	{
+		case 'u': GPIO_SetBits(GPIOC, LED1);GPIO_SetBits(GPIOC, LED2); break;
+		case 'l': GPIO_SetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2); break;
+		case 'r': GPIO_ResetBits(GPIOC, LED1);GPIO_SetBits(GPIOC, LED2); break;
+		case 'd': GPIO_ResetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2); break;
+	}
+
+}
+
+void Ultrasonic_test(int threshold)
+{
+	if(Hcsr04GetLength() < threshold) { GPIO_ResetBits(GPIOC, LED1);GPIO_ResetBits(GPIOC, LED2);}
+	else  { GPIO_SetBits(GPIOC, LED1);GPIO_SetBits(GPIOC, LED2);}
 }
 
 #endif // TEST_H_INCLUDED

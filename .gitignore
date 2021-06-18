@@ -31,4 +31,15 @@
 *.out
 *.app
 
+# Vscode
 /.vscode
+
+/project/Listings/car.map
+/project/Listings/startup_stm32f10x_md.lst
+/project/Objects/car.axf
+/project/Objects/car.build_log.htm
+/project/Objects/car.hex
+/project/Objects/car.htm
+/project/Objects/car.lnp
+/project/Objects/car_Target 1.dep
+

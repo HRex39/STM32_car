@@ -1,26 +1,33 @@
 # STM32_car
-robot car use STM32F103RB
+robot car use STM32F103RB  
 
-## HCR 2021/6/10
+## How to start? 
+1. Download Keil5  
+2. Open /project/car.uvprojx  
+3. Wait for the keil5 download library of STM32F103RB  
+4. Compile and Burn car.hex into STM32  
 
-1. Things about Delay:
-   	`eg.. delay_ms(1000)`
+## Logs
+### HCR 2021/6/10
 
-2. Things about Infrared:
-	IF GPIO_ReadInputDataBit == 0
-   	THEN there is the obstacle
-   	eg.. 
+1. Things about Delay:  
+    `eg.. delay_ms(1000)`
+
+2. Things about Infrared:  
+    IF GPIO_ReadInputDataBit == 0  
+    THEN there is the obstacle  
+    eg.. 
    
    ```c
    if (GPIO_ReadInputDataBit(GPIOA, Infra_Left) == 0)
-      		GPIO_ResetBits(GPIOC, LED1);
-      	else
-      		GPIO_SetBits(GPIOC, LED1);
+      	GPIO_ResetBits(GPIOC, LED1);
+   else
+      	GPIO_SetBits(GPIOC, LED1);
    ```
-3. Thing about Ultrasonic:
-    - `RCC_APB1PeriphClockCmd`: Enables or disables the Low Speed APB (APB1) peripheral clock
-    - `RCC_APB2PeriphClockCmd`: Enables or disables the High Speed APB (APB2) peripheral clock.
-## YSK 2021/6/11
+3. Thing about Ultrasonic:  
+    - `RCC_APB1PeriphClockCmd`: Enables or disables the Low Speed APB (APB1) peripheral clock.  
+    - `RCC_APB2PeriphClockCmd`: Enables or disables the High Speed APB (APB2) peripheral clock.  
+### YSK 2021/6/11
 - You can just use following code to run the car:
 	
   - Next two should  use with delay:		
@@ -47,9 +54,9 @@ robot car use STM32F103RB
 
 - I move some test code to test() in test.h
 
-## YSK 2021/6/16
+### YSK 2021/6/16
 
-1. 4个红外pin口的的定义，初始化时使用的是GPIOA。
+1. 4个红外pin口的的定义，初始化时使用的是GPIOA。  
 
    1. port.h	line9
 

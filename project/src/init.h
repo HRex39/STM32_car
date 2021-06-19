@@ -39,7 +39,7 @@ void System_Init()
 	//init ultrasonic
 	Ultra_Init();
 	//init timer for pwm
-	TIM3_PWM_Init(999,71);
+	TIM3_PWM_Init(1000-1,72-1);
 	
 }
 

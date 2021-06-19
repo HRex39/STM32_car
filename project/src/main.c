@@ -17,6 +17,7 @@ int main()
 	System_Init();
 	delay_ms(1200);
 	int head;
+	int traversed = 0;
 	char carDir = 'u';//init dir
 	//for the loop
 	while(1)
@@ -34,7 +35,7 @@ int main()
 		//Go_Little_Forward();
 
 		//上行时左侧有口
-		if((carDir == 'u')&&(Get_Infrared(Rear_Left) == 0))
+		if((carDir == 'u')&&(Get_Infrared(Rear_Left) == 0)&&traversed)
 		{
 			delay_ms(50);
 			Car_Stop();delay_ms(1000);
@@ -44,7 +45,7 @@ int main()
 		}
 		
 		//下行时车右侧有口
-		if((carDir == 'd')&&(Get_Infrared(Rear_Right) == 0))
+		if((carDir == 'd')&&(Get_Infrared(Rear_Right) == 0)&&traversed)
 		{
 			delay_ms(50);
 			Car_Stop();delay_ms(1000);
@@ -55,7 +56,10 @@ int main()
 
 		float length = Hcsr04GetLength();
 		if(length < threshold)
+		{
 			head = 1;
+			traversed = 1;
+		}
 		else
 			head = 0;
 
@@ -76,13 +80,14 @@ int main()
 			} 
 			else if(carDir == 'l')
 			{
-				/*if(Get_Infrared(Rear_Left) == 0)
+				if(Get_Infrared(Rear_Left) == 0)
 				{//车左侧没墙 
 					delay_ms(20);
 					Car_Stop();delay_ms(1000);
 					Turn_Left(turn_time);
 					Car_Stop();delay_ms(300);
 					carDir = car_dir_left(carDir);
+					if(carDir == 'u'||carDir == 'd') traversed = 0; //重新遍历
 				}
 				else if (Get_Infrared(Rear_Right) == 0) 
 				{//车不能左转就右转，优先左转
@@ -91,6 +96,24 @@ int main()
 					Turn_Right(turn_time);
 					Car_Stop();delay_ms(300);
 					carDir = car_dir_right(carDir);
+					if(carDir == 'u'||carDir == 'd') traversed = 0; //重新遍历
+				}
+				
+				/*if(Get_Infrared(Rear_Right) == 0)
+				{//车右侧没墙 
+					delay_ms(20);
+					Car_Stop();delay_ms(1000);
+					Turn_Right(turn_time);
+					Car_Stop();delay_ms(300);
+					carDir = car_dir_right(carDir);
+				}
+				else if (Get_Infrared(Rear_Left) == 0) 
+				{//车不能右转就左转，优先右转
+					delay_ms(20);
+					Car_Stop();delay_ms(1000);
+					Turn_Left(turn_time);
+					Car_Stop();delay_ms(300);
+					carDir = car_dir_left(carDir);
 				}*/
 				else 
 				{

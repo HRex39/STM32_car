@@ -4,7 +4,8 @@
 #include "port.h"
 
 //#define vertifyTime 50
-#define speed 4000
+#define speed 800
+#define compensation 20
 
 //TIM3 PWM部分初始化 
 //PWM输出初始化
@@ -37,18 +38,18 @@ void TIM3_PWM_Init(uint16_t arr,uint16_t psc)
 // 1-left wheel forward     2-left wheel backward
 // 3-right wheel forward    4-right wheel backward
 //上面的注释不太对
-//1-前右，2-右后，3-左前，4-右前
+//1-前右，2-右后，3-左前，4-左后
 void Go_Forward()
 {
-	TIM3->CCR1 = speed-2000;
+	TIM3->CCR1 = speed;//-speed/4;
 	TIM3->CCR2 = 0;
-	TIM3->CCR3 = speed;
+	TIM3->CCR3 = speed+compensation;
 	TIM3->CCR4 = 0;	
 }
 
 void Go_Little_Forward()
 {
-	TIM3->CCR1 = 3000-2000;
+	TIM3->CCR1 = 3000-speed/4;
 	TIM3->CCR2 = 0;
 	TIM3->CCR3 = 3000;
 	TIM3->CCR4 = 0;	
@@ -57,9 +58,9 @@ void Go_Little_Forward()
 void Go_Back()
 {
 	TIM3->CCR1 = 0;
-	TIM3->CCR2 = speed-2000;
+	TIM3->CCR2 = speed;//-speed/4;
 	TIM3->CCR3 = 0;
-	TIM3->CCR4 = speed;	
+	TIM3->CCR4 = speed+compensation;	
 }
 
 void Car_Stop(){
@@ -71,33 +72,33 @@ void Car_Stop(){
 
 void Turn_Right(int ms){
 	TIM3->CCR1 = 0;
-	TIM3->CCR2 = speed-2000;
-	TIM3->CCR3 = speed;
+	TIM3->CCR2 = speed;//-speed/4;
+	TIM3->CCR3 = speed+compensation;
 	TIM3->CCR4 = 0;
 	delay_ms(ms);
 }
 
 void Turn_Left(int ms){
-	TIM3->CCR1 = speed-2000;
+	TIM3->CCR1 = speed;//-speed/4;
 	TIM3->CCR2 = 0;
 	TIM3->CCR3 = 0;
-	TIM3->CCR4 = speed;
+	TIM3->CCR4 = speed+compensation;
 	delay_ms(ms);
 }
 
 void Turn_Around(int ms){
-	TIM3->CCR1 = speed-2000;
+	TIM3->CCR1 = speed;//-speed/4;
 	TIM3->CCR2 = 0;
 	TIM3->CCR3 = 0;
-	TIM3->CCR4 = speed;
+	TIM3->CCR4 = speed+compensation;
 	delay_ms(ms);
 }
 
 //turn right to vertify
 void Vertify_Right(int vertifyTime){
 	TIM3->CCR1 = 0;
-	TIM3->CCR2 = speed-2000;
-	TIM3->CCR3 = speed;
+	TIM3->CCR2 = speed;//-speed/4;
+	TIM3->CCR3 = speed+compensation;
 	TIM3->CCR4 = 0;
 	
 	//need to check in real car
@@ -106,10 +107,10 @@ void Vertify_Right(int vertifyTime){
 
 //turn left to vertify
 void Vertify_Left(int vertifyTime){
-  TIM3->CCR1 = speed-2000;
+  TIM3->CCR1 = speed;//-speed/4;
 	TIM3->CCR2 = 0;
 	TIM3->CCR3 = 0;
-	TIM3->CCR4 = speed;
+	TIM3->CCR4 = speed+compensation;
 	
 	//need to check in real car
 	delay_ms(vertifyTime);

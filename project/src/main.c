@@ -8,7 +8,9 @@
 #include "stdio.h"
 #include "test.h"
 
-#define threshold 15
+#define threshold 10
+#define turn_time 550
+#define verify_time 80
 
 int main()
 {
@@ -34,18 +36,20 @@ int main()
 		//上行时左侧有口
 		if((carDir == 'u')&&(Get_Infrared(Rear_Left) == 0))
 		{
-			delay_ms(20);
+			delay_ms(50);
 			Car_Stop();delay_ms(1000);
-			Turn_Left(300);
+			Turn_Left(turn_time);
+			Car_Stop();delay_ms(300);
 			carDir = car_dir_left(carDir); // change dir
 		}
 		
 		//下行时车右侧有口
 		if((carDir == 'd')&&(Get_Infrared(Rear_Right) == 0))
 		{
-			delay_ms(20);
+			delay_ms(50);
 			Car_Stop();delay_ms(1000);
-			Turn_Right(300);	
+			Turn_Right(turn_time);	
+			Car_Stop();delay_ms(300);
 			carDir = car_dir_right(carDir); 
 		}
 
@@ -65,26 +69,29 @@ int main()
 				{
 					Go_Back();			//先后退防止撞墙，并转180°，
 					delay_ms(300);
-					Turn_Around(800); 
+					Turn_Around(2*turn_time); 
+					Car_Stop();delay_ms(300);
 					carDir = car_dir_back(carDir);
 				}
 			} 
 			else if(carDir == 'l')
 			{
-				if(Get_Infrared(Rear_Left) == 0)
+				/*if(Get_Infrared(Rear_Left) == 0)
 				{//车左侧没墙 
 					delay_ms(20);
 					Car_Stop();delay_ms(1000);
-					Turn_Left(300);
+					Turn_Left(turn_time);
+					Car_Stop();delay_ms(300);
 					carDir = car_dir_left(carDir);
 				}
-				else if (Get_Infrared(Rear_Right) == 1) 
+				else if (Get_Infrared(Rear_Right) == 0) 
 				{//车不能左转就右转，优先左转
 					delay_ms(20);
 					Car_Stop();delay_ms(1000);
-					Turn_Right(300);
+					Turn_Right(turn_time);
+					Car_Stop();delay_ms(300);
 					carDir = car_dir_right(carDir);
-				}
+				}*/
 				else 
 				{
 					Car_Stop();delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);
@@ -106,8 +113,8 @@ int main()
 			int vertifyLeft = Get_Infrared(Front_Left);
 			int vertifyRight = Get_Infrared(Front_Right);
 
-			if(vertifyLeft==1 && vertifyRight==0)	Vertify_Right(30);  //左侧离得近
-			else if(vertifyLeft==0 && vertifyRight==1) Vertify_Left(30);  //右侧离得近
+			if(vertifyLeft==1 && vertifyRight==0)	Vertify_Right(verify_time);  //左侧离得近
+			else if(vertifyLeft==0 && vertifyRight==1) Vertify_Left(verify_time);  //右侧离得近
 			
 		}
 		

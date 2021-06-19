@@ -90,29 +90,7 @@ int main()
 					Turn_Right(turn_time);
 					Car_Stop();delay_ms(300);
 					carDir = car_dir_right(carDir);
-<<<<<<< HEAD
-					if(carDir == 'u'||carDir == 'd') traversed = 0; //重新遍历
 				}
-				
-				/*if(Get_Infrared(Rear_Right) == 0)
-				{//车右侧没墙 
-					delay_ms(20);
-					Car_Stop();delay_ms(1000);
-					Turn_Right(turn_time);
-					Car_Stop();delay_ms(300);
-					carDir = car_dir_right(carDir);
-				}
-				else if (Get_Infrared(Rear_Left) == 0) 
-				{//车不能右转就左转，优先右转
-					delay_ms(20);
-					Car_Stop();delay_ms(1000);
-					Turn_Left(turn_time);
-					Car_Stop();delay_ms(300);
-					carDir = car_dir_left(carDir);
-				}*/
-=======
-				}
->>>>>>> main
 				else 
 				{
 					Car_Stop();delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);

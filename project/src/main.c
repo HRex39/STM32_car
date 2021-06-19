@@ -22,17 +22,11 @@ int main()
 	//for the loop
 	while(1)
 	{
-		/*test*/
-		//test();
 		Dir_test(carDir);//for debug
-		//Ultrasonic_test(threshold);
 		
 		/*function*/
-
 		Go_Forward();
 		delay_ms(300);
-		
-		//Go_Little_Forward();
 
 		//上行时左侧有口
 		if((carDir == 'u')&&(Get_Infrared(Rear_Left) == 0)&&traversed)
@@ -96,6 +90,7 @@ int main()
 					Turn_Right(turn_time);
 					Car_Stop();delay_ms(300);
 					carDir = car_dir_right(carDir);
+<<<<<<< HEAD
 					if(carDir == 'u'||carDir == 'd') traversed = 0; //重新遍历
 				}
 				
@@ -115,6 +110,9 @@ int main()
 					Car_Stop();delay_ms(300);
 					carDir = car_dir_left(carDir);
 				}*/
+=======
+				}
+>>>>>>> main
 				else 
 				{
 					Car_Stop();delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);delay_ms(1000);
@@ -124,21 +122,11 @@ int main()
 		
 		if((carDir == 'u')||(carDir == 'd'))
 		{
-		
-			//Distance less than threshold return true, else return false
-			
-			/*int vertifyLeft = Get_Infrared(Rear_Left);
-			int vertifyRight = Get_Infrared(Rear_Right);*/
-			
-			/*int vertifyLeft = Get_Infrared(Front_Left) && !Get_Infrared(Rear_Left);
-			int vertifyRight = Get_Infrared(Front_Right) && !Get_Infrared(Rear_Right);*/
-			
 			int vertifyLeft = Get_Infrared(Front_Left);
 			int vertifyRight = Get_Infrared(Front_Right);
 
 			if(vertifyLeft==1 && vertifyRight==0)	Vertify_Right(verify_time);  //左侧离得近
 			else if(vertifyLeft==0 && vertifyRight==1) Vertify_Left(verify_time);  //右侧离得近
-			
 		}
 		
 	}//while
